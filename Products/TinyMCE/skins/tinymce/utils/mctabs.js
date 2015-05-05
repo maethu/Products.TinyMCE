@@ -29,12 +29,8 @@ MCTabs.prototype.getParam = function(name, default_value) {
 	return value;
 };
 
-// Plone fix
-// The "selected" css class needs to be applied to the a tag within the tab,
-// and not the "current" class for the first child. In most situations the a tag
-// is not the first child of the tab.
 MCTabs.prototype.showTab =function(tab){
-	tab.getElementsByTagName("a")[0].className = 'selected';
+	tab.className = 'current';
 	tab.setAttribute("aria-selected", true);
 	tab.setAttribute("aria-expanded", true);
 	tab.tabIndex = 0;
@@ -43,12 +39,11 @@ MCTabs.prototype.showTab =function(tab){
 MCTabs.prototype.hideTab =function(tab){
 	var t=this;
 
-	tab.getElementsByTagName("a")[0].className = '';
+	tab.className = '';
 	tab.setAttribute("aria-selected", false);
 	tab.setAttribute("aria-expanded", false);
 	tab.tabIndex = -1;
 };
-// end Plone fix
 
 MCTabs.prototype.showPanel = function(panel) {
 	panel.className = 'current'; 
